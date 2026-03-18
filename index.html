@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Calculadora Eléctrica PRO</title>
+
+<!-- ✅ CONEXIÓN CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- ✅ MANIFEST (APP) -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+
+<!-- ✅ LIBRERÍA PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="app">
+
+<h1>⚡ Calculadora PRO</h1>
+
+<div class="grid">
+  <div class="card">Potencia Total<span id="potencia">0 W</span></div>
+  <div class="card">Potencia Corregida<span id="potenciaCorr">0 W</span></div>
+  <div class="card">Corriente<span id="corriente">0 A</span></div>
+  <div class="card">Breaker<span id="breaker">-</span></div>
+  <div class="card">Cable<span id="cable">-</span></div>
+  <div class="card">Caída Voltaje<span id="caida">0%</span></div>
+</div>
+
+<div class="config">
+  <label>Voltaje</label>
+  <select id="voltaje">
+    <option value="110">110V</option>
+    <option value="220">220V</option>
+  </select>
+
+  <label>Factor de demanda</label>
+  <input type="number" id="factor" value="0.7" step="0.1">
+
+  <label>Longitud del cable (m)</label>
+  <input type="number" id="longitud" value="10">
+
+  <label>Material</label>
+  <select id="material">
+    <option value="cobre">Cobre</option>
+    <option value="aluminio">Aluminio</option>
+  </select>
+</div>
+
+<h2>Cargas</h2>
+
+<table>
+<thead>
+<tr>
+<th>Equipo</th>
+<th>W</th>
+<th>Cantidad</th>
+<th>Total</th>
+<th></th>
+</tr>
+</thead>
+<tbody id="tabla"></tbody>
+</table>
+
+<button onclick="agregarCarga()">+ Agregar Carga</button>
+<button class="pdf" onclick="exportarPDF()">📄 Exportar PDF</button>
+
+</div>
+
+<!-- ✅ CONEXIÓN JAVASCRIPT -->
+<script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0b0b0b;
+  color: white;
+}
+
+.app {
+  max-width: 420px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.card {
+  background: #161616;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.card span {
+  display: block;
+  color: #00e676;
+  margin-top: 5px;
+}
+
+.config {
+  margin: 20px 0;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 10px;
+  background: #1c1c1c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+th, td {
+  padding: 5px;
+  text-align: center;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  background: #00e676;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+button.pdf {
+  background: #2979ff;
+}
