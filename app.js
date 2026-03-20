@@ -58,6 +58,7 @@ function calcular() {
   document.getElementById("corriente").innerText = I.toFixed(2) + " A";
   document.getElementById("breaker").innerText = breaker + " A";
   document.getElementById("cable").innerText = cable;
+  generarTablero();
 }
 
 function seleccionarBreaker(I) {
@@ -256,6 +257,59 @@ function seleccionarCable(breaker) {
   // 💾 GUARDAR
   doc.save("reporte-profesional.pdf");
 }
+function generarTablero() {
+  let tablero = document.getElementById("tablero");
+  tablero.innerHTML = "";
 
+  let circuitos = [];
+
+  cargas.forEach(c => {
+    let nombre = c.nombre.toLowerCase();
+    let potencia = c.watts * c.cantidad;
+
+    let tipo = "toma";
+
+    if (
+      nombre.includes("luz") ||
+      nombre.includes("foco") ||
+      nombre.includes("lampara")
+    ) {
+      tipo = "luz";
+    }
+
+    if (
+      nombre.includes("aire") ||
+      nombre.includes("nevera") ||
+      nombre.includes("lavadora")
+    ) {
+      tipo = "especial";
+    }
+
+    circuitos.push({
+      nombre: c.nombre,
+      potencia: potencia,
+      tipo: tipo
+    });
+  });
+
+  let V = Number(document.getElementById("voltaje").value);
+
+  circuitos.forEach((c, i) => {
+    let I = c.potencia / V;
+    let breaker = seleccionarBreaker(I);
+    let cable = seleccionarCable(breaker);
+
+    tablero.innerHTML += `
+    <div class="card">
+      Circuito ${i + 1} - ${c.nombre}<br>
+      Tipo: ${c.tipo}<br>
+      Potencia: ${c.potencia} W<br>
+      Corriente: ${I.toFixed(2)} A<br>
+      Breaker: ${breaker} A<br>
+      Cable: ${cable}
+    </div>
+    `;
+  });
+                                               
 
 render();
